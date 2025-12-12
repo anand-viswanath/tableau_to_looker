@@ -20,7 +20,6 @@
 
   elements:
 
-  # KPI 1: Total Sales
   - name: total_sales_kpi
     title: Total Sales
     model: new
@@ -36,7 +35,6 @@
     width: 6
     height: 4
 
-  # KPI 2: Total Profit
   - name: total_profit_kpi
     title: Total Profit
     model: new
@@ -50,7 +48,6 @@
     width: 6
     height: 4
 
-  # KPI 3: Profit Margin
   - name: profit_margin_kpi
     title: Profit Margin
     model: new
@@ -64,7 +61,6 @@
     width: 6
     height: 4
 
-  # KPI 4: Total Orders
   - name: total_orders_kpi
     title: Total Orders
     model: new
@@ -78,7 +74,6 @@
     width: 6
     height: 4
 
-  # Chart 1: Sales Over Time
   - name: sales_over_time
     title: Sales Over Time
     model: new
@@ -105,7 +100,6 @@
     width: 9
     height: 6
 
-  # Chart 2: Sales By Category and Sub-Category
   - name: sales_by_category_subcategory
     title: Sales By Category and Sub-Category
     model: new
@@ -159,7 +153,6 @@
     width: 9
     height: 6
 
-  # Chart 3: Sales By Segment
   - name: sales_by_segment
     title: Sales By Segment
     model: new
@@ -177,7 +170,6 @@
     width: 6
     height: 6
 
-  # Chart 4: Sales by State (Map)
   - name: sales_by_state
     title: Sales by State
     model: new
@@ -186,24 +178,19 @@
     fields: [superstore.state, superstore.total_sales]
     sorts: [superstore.total_sales desc]
     limit: 500
-
     map: usa
     map_plot_mode: points
     map_position: fit_data
     map_tile_provider: light
-
     series_types:
       superstore.total_sales: circle
-
     listen:
       month_filter: superstore.month_name
-
     row: 10
     col: 0
     width: 9
     height: 6
 
-  # Chart 5: Top 10 Products by Sale
   - name: top_10_products
     title: Top 10 Products by Sale
     model: new
@@ -231,7 +218,6 @@
     width: 9
     height: 6
 
-  # Chart 6: Sales by Region
   - name: sales_by_region
     title: Sales by Region
     model: new
