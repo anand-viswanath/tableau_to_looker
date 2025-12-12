@@ -1,17 +1,14 @@
 view: qwerty {
   sql_table_name: `Tableau_Looker.superstore` ;;
 
-  # Dimensions based on physical table columns
-
   dimension: row_id {
-    type: string
-    primary_key: yes
-    sql: ${TABLE}.`Row ID` ;;
+    type: number
+    sql: ${TABLE}.Row_ID ;;
   }
 
   dimension: order_id {
     type: string
-    sql: ${TABLE}.`Order ID` ;;
+    sql: ${TABLE}.Order_ID ;;
   }
 
   dimension_group: order {
@@ -26,7 +23,7 @@ view: qwerty {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.`Order Date` ;;
+    sql: ${TABLE}.Order_Date ;;
   }
 
   dimension_group: ship {
@@ -41,83 +38,89 @@ view: qwerty {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.`Ship Date` ;;
+    sql: ${TABLE}.Ship_Date ;;
   }
 
   dimension: ship_mode {
     type: string
-    sql: ${TABLE}.`Ship Mode` ;;
+    sql: ${TABLE}.Ship_Mode ;;
   }
 
   dimension: customer_id {
     type: string
-    sql: ${TABLE}.`Customer ID` ;;
+    sql: ${TABLE}.Customer_ID ;;
   }
 
   dimension: customer_name {
     type: string
-    sql: ${TABLE}.`Customer Name` ;;
+    sql: ${TABLE}.Customer_Name ;;
   }
 
   dimension: segment {
     type: string
-    sql: ${TABLE}.`Segment` ;;
+    sql: ${TABLE}.Segment ;;
   }
 
   dimension: country {
     type: string
-    sql: ${TABLE}.`Country` ;;
+    sql: ${TABLE}.Country ;;
+    map_layer_name: countries
   }
 
   dimension: city {
     type: string
-    sql: ${TABLE}.`City` ;;
+    sql: ${TABLE}.City ;;
   }
 
   dimension: state {
     type: string
-    sql: ${TABLE}.`State` ;;
+    sql: ${TABLE}.State ;;
+    map_layer_name: us_states
   }
 
   dimension: postal_code {
     type: string
-    sql: ${TABLE}.`Postal Code` ;;
+    sql: ${TABLE}.Postal_Code ;;
   }
 
   dimension: region {
     type: string
-    sql: ${TABLE}.`Region` ;;
+    sql: ${TABLE}.Region ;;
   }
 
   dimension: product_id {
     type: string
-    sql: ${TABLE}.`Product ID` ;;
+    sql: ${TABLE}.Product_ID ;;
   }
 
   dimension: category {
     type: string
-    sql: ${TABLE}.`Category` ;;
+    sql: ${TABLE}.Category ;;
   }
 
   dimension: sub_category {
     type: string
-    sql: ${TABLE}.`Sub-Category` ;;
+    sql: ${TABLE}.Sub_Category ;;
   }
 
   dimension: product_name {
     type: string
-    sql: ${TABLE}.`Product Name` ;;
+    sql: ${TABLE}.Product_Name ;;
   }
 
-  # Measures
+  dimension: sales {
+    type: number
+    sql: ${TABLE}.Sales ;;
+  }
 
   measure: total_sales {
     type: sum
-    sql: ${TABLE}.`Sales` ;;
+    sql: ${sales} ;;
     value_format_name: usd
   }
 
   measure: total_orders {
     type: count
+    drill_fields: [order_id, customer_name, product_name]
   }
 }
