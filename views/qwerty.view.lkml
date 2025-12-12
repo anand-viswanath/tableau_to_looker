@@ -1,6 +1,8 @@
 view: qwerty {
   sql_table_name: `Tableau_Looker.superstore` ;;
 
+  # Dimensions based on physical table columns
+
   dimension: row_id {
     type: string
     primary_key: yes
@@ -12,17 +14,31 @@ view: qwerty {
     sql: ${TABLE}.`Order ID` ;;
   }
 
-  dimension_group: order_date {
+  dimension_group: order {
     type: time
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     convert_tz: no
     datatype: date
     sql: ${TABLE}.`Order Date` ;;
   }
 
-  dimension_group: ship_date {
+  dimension_group: ship {
     type: time
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     convert_tz: no
     datatype: date
     sql: ${TABLE}.`Ship Date` ;;
@@ -93,9 +109,12 @@ view: qwerty {
     sql: ${TABLE}.`Product Name` ;;
   }
 
+  # Measures
+
   measure: total_sales {
     type: sum
     sql: ${TABLE}.`Sales` ;;
+    value_format_name: usd
   }
 
   measure: total_orders {
