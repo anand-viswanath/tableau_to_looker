@@ -1,4 +1,4 @@
-dashboard: superstore_overview
+- dashboard: superstore_overview
   title: "Superstore Overview"
   layout: newspaper
   preferred_viewer: dashboards-next
